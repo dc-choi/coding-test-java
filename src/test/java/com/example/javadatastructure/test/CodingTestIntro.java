@@ -2,6 +2,8 @@ package com.example.javadatastructure.test;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+
 public class CodingTestIntro {
     @Test
     void 두수의_합() {
@@ -110,5 +112,93 @@ public class CodingTestIntro {
         for (int i = 0; i < answer.length; i++) {
             System.out.println(answer[i]);
         }
+    }
+
+    @Test
+    void 나머지_구하기() {
+        int num1 = 10;
+        int num2 = 5;
+
+        System.out.println(num1 % num2);
+    }
+
+    @Test
+    void 중앙값_구하기() {
+        int[] array = { 5, 4, 7, 1, 3 }; // 정렬후: 1, 3, 4, 5, 7
+        int answer = 0;
+
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array.length; j++) {
+                if (array[i] < array[j]) {
+                    int temp = array[i];
+                    array[i] = array[j];
+                    array[j] = temp;
+                }
+            }
+        }
+
+        answer = array[array.length / 2];
+        System.out.println(answer);
+    }
+
+    @Test
+    void 최빈값_구하기() {
+        int[] array = { 80, 80, 80, 9, 9 };
+        int[] index = new int[1000]; // 값별 개수를 구하기 위한 변수
+        int rep = 0; // 중복여부
+        int max = 0; // 최대값(최빈값)
+        int answer = 0; // 결과값
+
+        for (int i = 0; i < array.length; i++) {
+            index[array[i]]++; // 값별 개수를 구한다.
+
+            // 값별 개수의 최대값이 곧 최빈값이 됨.
+            if (max < index[array[i]]) {
+                max = index[array[i]];
+                answer = array[i];
+            }
+        }
+
+        for (int i : index) {
+            if (i == max) rep++;
+            if (rep > 1) answer = -1;
+        }
+
+        System.out.println(answer);
+    }
+
+    @Test
+    void 짝수는_싫어요() {
+        int n = 15;
+        int length = 0;
+
+        if (n % 2 != 0) length = (n / 2) + 1;
+        else length = n / 2;
+
+        int[] arr = new int[length];
+
+        for (int i = 1; i <= n; i++) {
+            if (i % 2 != 0) {
+                arr[(n - i) / 2] = i;
+            }
+        }
+
+        Arrays.sort(arr);
+
+        for (int a : arr) {
+            System.out.println(a);
+        }
+    }
+
+    @Test
+    void 약수의_합() {
+        int n = 12;
+        int answer = 0;
+
+        for (int i = 1; i <= n; i++) {
+            if (n % i == 0) answer += i;
+        }
+
+        System.out.println(answer);
     }
 }

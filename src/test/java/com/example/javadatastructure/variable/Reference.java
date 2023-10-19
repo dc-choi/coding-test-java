@@ -106,4 +106,73 @@ public class Reference {
         String name = null;
         // System.out.println(name.length()); // NullPointerException 발생
     }
+
+    @Test
+    void type_string() {
+        /**
+         * 아래 변수들은 String 변수에 저장되지 않는다.
+         * 문자열은 String 객체로 생성되고 변수는 String 객체를 참조한다.
+         * name, hobby 변수는 stack에 선언되고 문자열 리터럴의 주소를 가지고있으며, "신용권", "JAVA" 리터럴은 heap에 생성된다.
+         */
+        String name = "신용권";
+        String hobby = "JAVA";
+
+        /**
+         * new 연산자를 사용하여 String 객체를 사용하는 경우 다른 객체가 생성된다.
+         * 값은 같아도 다른 객체여서 == 연산을 할 경우 false 발생
+         * 다른 객체의 값이 동등한지 확인하는 경우 equals() 연산을 사용해야 함.
+         */
+        String name2 = name;
+        String name3 = new String("신용권");
+
+        System.out.println(name == name2); // true
+        System.out.println(name == name3); // false
+        System.out.println(name.equals(name3)); // true
+    }
+
+    @Test
+    void type_array() {
+        /**
+         * 같은 타입의 데이터를 연속된 공간에 나열시키고, 각 데이터에 인덱스를 부여한 자료구조
+         * 다른 타입의 데이터를 저장하려고 하면 컴파일 오류가 발생한다.
+         *
+         * 한번 생성된 배열의 길이는 늘리거나 줄일 수 없다.
+         */
+        int[] score = { 80, 90, 100, 100, 100 };
+        int sum = 0;
+        int avg = 0;
+
+        for (int i = 0; i < score.length; i++) {
+            sum += score[i];
+        }
+        avg = sum / score.length;
+
+        System.out.println(sum);
+        System.out.println(avg);
+
+        /**
+         * 배열도 객체이므로 heap 영역에 생성되고 배열을 선언한 변수는 heap 영역의 객체를 참조한다.
+         * 참조할 배열 객체가 없다면 배열 변수는 null값으로 초기화할 수 있다.
+         *
+         * 만약 배열 변수가 null값을 가진 상태에서 변수로 값을 읽거나 저장하게 되면 NullPointerException이 발생한다.
+         * 배열 변수는 배열을 생성하고 참조하는 상태에서 값을 저장하거나 읽어야 한다.
+         */
+        String[] names = null;
+        // System.out.println(names[0]); // NullPointerException 발생
+        // names = { "김영한", "이일민", "남궁성" }; // 컴파일 오류 발생
+        names = new String[]{ "김영한", "이일민", "남궁성", "무명의 개발자" };
+        names[3] = "최동철";
+
+        for (String name : names) {
+            System.out.println(name);
+        }
+
+        /**
+         * 배열을 바로 선언하면 new 연산자를 사용하지않고 바로 선언 가능하다.
+         */
+        String[] strs = { "1", "2", "3", "4", "5" };
+        for (String str : strs) {
+            System.out.println(str);
+        }
+    }
 }
