@@ -201,4 +201,51 @@ public class CodingTestIntro {
 
         System.out.println(answer);
     }
+
+    @Test
+    void 피자_나눠_먹기_1() {
+        int n = 7;
+        int answer = n / 7;
+        if (n % 7 != 0) answer++;
+
+        System.out.println(answer);
+    }
+
+    @Test
+    void 피자_나눠_먹기_2() {
+        int n = 10;
+
+        int i = 1;
+        for (;;) {
+            if ((n * i) % 6 == 0) {
+                break;
+            }
+            i++;
+        }
+
+        System.out.println((n * i) / 6);
+    }
+
+    @Test
+    void 피자_나눠_먹기_3() {
+        int slice = 7;
+        int n = 10;
+
+        int answer = n / slice;
+        if (n % slice != 0) answer++;
+
+        System.out.println(answer);
+    }
+
+    @Test
+    void 배열의_평균값() {
+        int[] numbers = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+
+        double sum = 0;
+        for (int n : numbers) {
+            sum += (double) n;
+        }
+
+        System.out.println(sum / numbers.length);
+    }
 }

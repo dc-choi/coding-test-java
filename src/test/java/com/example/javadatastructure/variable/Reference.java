@@ -174,5 +174,137 @@ public class Reference {
         for (String str : strs) {
             System.out.println(str);
         }
+
+        /**
+         * new 연산자로 생성할 때 길이를 정해주고 설정
+         * int의 경우 0으로 초기화되고 String의 경우 null로 초기화된다.
+         */
+        int[] score2 = new int[30];
+        String[] names2 = new String[30];
+        for (int i = 0; i < score2.length; i++) {
+            System.out.println(score2[i]);
+            System.out.println(names2[i]);
+        }
+
+        /**
+         * 배열의 길이는 array.length에 선언된다. array는 배열객체이다.
+         * 객체 내부의 데이터인 length는 read only이다.
+         */
+        // score2.length = 10; // Error
+    }
+
+    @Test
+    void type_multi_array() {
+        /**
+         * 원시타입 다차원 배열
+         */
+        // scores는 stack에 선언되고 heap에 scores 객체가 할당된다.
+        // scores 객체에는 행 2개의 메모리 주소가 있다.
+        // 2개의 메모리 주소로 넘어가면 실제로 연속된 값이 3개가 있다.
+        int[][] scores = new int[2][3];
+        System.out.println(scores.length);
+        for (int[] s : scores) {
+            System.out.println(s.length);
+        }
+
+        /**
+         * 참조타입 다차원 배열
+         */
+        // strs는 stack에 선언되고 heap에 strs 객체가 할당된다.
+        // strs 객체에는 행 3개의 메모리 주소가 있다.
+        // 3개의 메모리 주소를 넘어가면 실제로 연속된 값이 있다.
+        String[] strs = new String[3];
+        strs[0] = "C";
+        strs[1] = "C++";
+        strs[2] = "JAVA";
+        for (String s : strs) {
+            System.out.println(s);
+        }
+
+        /**
+         * String[]의 경우 배열 항목간의 문자열을 비교하기 위해서는 == 연산자대신 equals() 메서드를 사용해야 한다.
+         * ==는 객체의 번지를 비교하기 때문에 문자열 비교에 사용할 수 없다.
+         */
+        strs[0] = new String("JAVA");
+        strs[1] = "JAVA";
+        System.out.println(strs[0] == strs[2]); // false
+        System.out.println(strs[0].equals(strs[2])); // true
+
+        System.out.println(strs[1] == strs[2]); // true
+        System.out.println(strs[1].equals(strs[2])); // true
+
+        /**
+         * 베열을 복사하기 위해서는 for문을 사용하거나 System.arraycopy()를 사용한다.
+         * 여기서는 System.arraycopy()를 사용하는 방법만 적어본다.
+         *
+         * 얕은 복사: 복사되는 값이 stack에서 객체의 번지가 복사됨.
+         * heap에서 참조하는 객체가 이전에 참조하는 객체와 동일한 것.
+         *
+         * 깊은 복사: 참조하는 객체도 별도로 생성되는 것.
+         */
+        int[] oldArr = { 1, 2, 3 };
+        int[] newArr = new int[5];
+        // src: oldArr, dest: newArr
+        // src의 0번째 주소부터 dest의 0번째 주소에 oldArr.length만큼 복사한다.
+        System.arraycopy(oldArr, 0, newArr, 0, oldArr.length);
+    }
+
+    @Test
+    void type_enum() {
+        /**
+         * 열거 타입
+         * 한정된 값만을 가지는 데이터 타입이며 하나 이상의 상수를 저장하는 타입이다.
+         *
+         * 관례적으로 파스칼 케이스를 사용한다.
+         */
+        // 참조타입이라서 Week를 자료형으로 가진다.
+        // String i = Week.MONDAY;
+        Week w = Week.SUNDAY;
+        System.out.println(w);
+        System.out.println(Week.MONDAY);
+        w = null; // 참조타입이라 null 할당 가능
+        System.out.println(w);
+
+        /**
+         * 열거 상수는 객체이다. heap 영역에 할당이 되게 된다.
+         * 열거 타입 변수를 선언하게 되면 stack에 heap영역의 주소가 할당된다.
+         *
+         * 그래서 같은 열거상수를 참조하기에 == 연산자를 사용한 연산결과는 true가 나온다.
+         */
+        Week week = Week.SUNDAY;
+        System.out.println(week == Week.SUNDAY); // true
+
+        /**
+         * 열거 타입의 메서드
+         * 모든 열거타입은 컴파일시 Enum 클래스를 상속받는다.
+         * 그래서 Enum 클래스의 메서드를 사용할 수 있다.
+         */
+        // name(): 열거 객체가 가진 문자열을 반환한다. 문자열은 열거 타입을 정의할 때 사용한 상수 이름과 같다.
+        String name = week.name();
+        System.out.println(name); // SUNDAY
+
+        // ordinal(): 열거 객체가 가진 순번을 반환한다. 순번은 열거 타입을 정의할 때의 순번을 말한다.
+        int ordinal = week.ordinal();
+        System.out.println(ordinal); // 6
+
+        // compareTo(): 매개값으로 주어진 열거 객체를 기준으로 전후로 몇번째 위치하는지 비교한다. (음수면 앞, 양수면 뒤)
+        Week monday = Week.MONDAY;
+        Week wednesday = Week.WEDNESDAY;
+        System.out.println(monday.compareTo(wednesday)); // -2 (monday가 wednesday보다 2칸 앞)
+        System.out.println(wednesday.compareTo(monday)); // 2 (wednesday가 monday보다 2칸 뒤)
+
+        // valueOf(): 매개값으로 주어지는 문자열과 동일한 문자열을 가지는 열거 객체를 반환한다.
+        Week week1 = Week.valueOf("SATURDAY");
+        System.out.println(week1);
+        // Week week2 = Week.valueOf("saturday"); // Error
+        // Week week3 = Week.valueOf(""); // Error
+        // System.out.println(week2);
+        // System.out.println(week3);
+
+        // values(): 열거 타입의 모든 열거 객체들을 배열로 만들어서 반환한다.
+        Week[] days = Week.values();
+        for (Week day : days) {
+            System.out.println(day);
+        }
     }
 }
