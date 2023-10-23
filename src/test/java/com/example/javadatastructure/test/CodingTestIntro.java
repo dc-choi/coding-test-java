@@ -248,4 +248,99 @@ public class CodingTestIntro {
 
         System.out.println(sum / numbers.length);
     }
+
+    @Test
+    void 옷가게_할인_받기() {
+        int price = 100010;
+
+        double answer = 0.0;
+
+        if (price < 100000) answer = price;
+        else if (price >= 100000 && price < 300000) answer = price * 0.95;
+        else if (price >= 300000 && price < 500000) answer = price * 0.9;
+        else if (price >= 500000) answer = price * 0.8;
+
+        System.out.println((int)answer);
+    }
+
+    @Test
+    void 아이스_아메리카노() {
+        int money = 15000;
+
+        int ice = money / 5500;
+        int other = money % 5500;
+
+        int[] answer = { ice, other };
+    }
+
+    @Test
+    void 나이_출력() {
+        int age = 27;
+        System.out.println(2022 - age + 1);
+    }
+
+    @Test
+    void 배열_뒤집기() {
+        int[] num_list = { 1, 2, 3, 4, 5 };
+        int[] answer = new int[num_list.length];
+
+        for (int i = num_list.length; i > 0; i--) {
+            answer[num_list.length - i] = num_list[i - 1];
+        }
+
+        for (int a : answer) {
+            System.out.println(a);
+        }
+    }
+
+    @Test
+    void 문자열_뒤집기() {
+        String my_string = "안녕하세요. 적당히 바람이 시원해 기분이 너무 좋아요. 유후~";
+        System.out.println(new StringBuffer(my_string).reverse()); // 프로그래머스에서는 toString() 메서드를 사용해야함.
+    }
+
+    @Test
+    void 직각삼각형_출력하기() {
+        int n = 5;
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j <= i; j++) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+    }
+
+    @Test
+    void 짝수_홀수_개수() {
+        int[] num_list = { 1, 2, 3, 4, 5 };
+        int odd = 0;
+        int even = 0;
+
+        for (int i = 0; i < num_list.length; i++) {
+            if (num_list[i] % 2 == 0) even++;
+            if (num_list[i] % 2 != 0) odd++;
+        }
+
+        int[] answer = { even, odd };
+
+        for (int a : answer) {
+            System.out.println(a);
+        }
+    }
+
+    @Test
+    void 문자_반복_출력하기() {
+        String my_string = "hello";
+        int n = 5;
+        String answer = "";
+
+        for (int i = 0; i < my_string.length(); i++) {
+            for (int j = 0; j < n; j++) {
+                answer += my_string.charAt(i);
+            }
+        }
+
+        System.out.println(answer);
+    }
 }
