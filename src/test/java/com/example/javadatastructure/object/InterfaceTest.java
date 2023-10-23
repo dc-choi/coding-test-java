@@ -9,6 +9,9 @@ public class InterfaceTest {
         Machine m = new Car();
         m.print();
 
+        Engine e = new Car();
+        e.engine();
+
         /**
          * 다형성
          * 같은 타입이지만 실행 결과가 다양한 객체를 이용할 수 있는 성질

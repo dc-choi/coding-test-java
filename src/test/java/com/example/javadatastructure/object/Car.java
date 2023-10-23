@@ -1,6 +1,6 @@
 package com.example.javadatastructure.object;
 
-public class Car implements Machine {
+public class Car implements Machine, Engine {
     private String name;
     private String color;
     private int nowSpeed;
