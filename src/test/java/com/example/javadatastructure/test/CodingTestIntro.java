@@ -343,4 +343,49 @@ public class CodingTestIntro {
 
         System.out.println(answer);
     }
+
+    @Test
+    void 특정_문자_제거하기() {
+        String my_string = "abcdefg";
+        String letter = "f";
+
+        String answer = my_string.replace(letter, "");
+        System.out.println(answer);
+    }
+
+    @Test
+    void 각도기() {
+        int angle = 91;
+
+        int answer = 0;
+
+        if (0 < angle && angle < 90) answer = 1;
+        if (angle == 90) answer = 2;
+        if (90 < angle && angle < 180) answer = 3;
+        if (angle == 180) answer = 4;
+
+        System.out.println(answer);
+    }
+
+    @Test
+    void 양꼬치() {
+        int n = 64;
+        int k = 6;
+
+        int answer = (n * 12000) + (k * 2000) - ((n / 10) * 2000);
+
+        System.out.println(answer);
+    }
+
+    @Test
+    void 짝수의_합() {
+        int n = 100;
+        int answer = 0;
+
+        for (int i = 1; i <= n; i++) {
+            if (i % 2 == 0) answer += i;
+        }
+
+        System.out.println(answer);
+    }
 }
