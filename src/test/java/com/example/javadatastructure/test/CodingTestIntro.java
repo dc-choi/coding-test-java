@@ -216,10 +216,7 @@ public class CodingTestIntro {
         int n = 10;
 
         int i = 1;
-        for (;;) {
-            if ((n * i) % 6 == 0) {
-                break;
-            }
+        while ((n * i) % 6 != 0) {
             i++;
         }
 
