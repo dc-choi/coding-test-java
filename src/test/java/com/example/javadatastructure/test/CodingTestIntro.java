@@ -385,4 +385,37 @@ public class CodingTestIntro {
 
         System.out.println(answer);
     }
+
+    @Test
+    void 편지() {
+        String message = "happy birthday!";
+        System.out.println(message.length() * 2);
+    }
+
+    @Test
+    void 점의_위치_구하기() {
+        int[] dot = { -3, -2 };
+        int answer = 0;
+
+        if (dot[0] > 0 && dot[1] > 0) answer = 1;
+        if (dot[0] < 0 && dot[1] > 0) answer = 2;
+        if (dot[0] < 0 && dot[1] < 0) answer = 3;
+        if (dot[0] > 0 && dot[1] < 0) answer = 4;
+
+        System.out.println(answer);
+    }
+
+    @Test
+    void 배열_원소의_길이() {
+        String[] strlist = { "We", "are", "the", "world!" };
+        int[] answer = new int[strlist.length];
+
+        for (int i = 0; i < strlist.length; i++) {
+            answer[i] = strlist[i].length();
+        }
+
+        for (int a : answer) {
+            System.out.println(a);
+        }
+    }
 }
