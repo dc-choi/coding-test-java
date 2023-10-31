@@ -2,7 +2,9 @@ package com.example.javadatastructure.test;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class CodingTestIntro {
     @Test
@@ -417,5 +419,172 @@ public class CodingTestIntro {
         for (int a : answer) {
             System.out.println(a);
         }
+    }
+
+    @Test
+    void 중복된_숫자의_개수() {
+        int[] array = { 1, 1, 2, 3, 4, 5, 6 };
+        int n = 1;
+
+        int answer = 0;
+        for(int a : array) if (a == n) answer++;
+
+        System.out.println(answer);
+    }
+
+    @Test
+    void 배열_자르기() {
+        int[] numbers = { 1, 2, 3, 4, 5 };
+        int num1 = 1;
+        int num2 = 3;
+
+        // int[] answer = Arrays.stream(numbers, num1, num2 + 1).toArray();
+
+        List<Integer> list = new ArrayList<>();
+        for (int i = num1; i <= num2; i++) {
+            list.add(numbers[i]);
+        }
+
+        int[] answer = new int[list.size()];
+        for (int i = 0; i < list.size(); i++) {
+            answer[i] = list.get(i);
+        }
+
+        for (int i : answer) {
+            System.out.println(i);
+        }
+    }
+
+    @Test
+    void 자릿수_구하기() {
+        int n = 1234;
+
+        int answer = 0;
+        String str = Integer.toString(n);
+        for (int i = 0; i < str.length(); i++) {
+            answer += str.charAt(i) - 48;
+        }
+
+        System.out.println(answer);
+    }
+
+    @Test
+    void 문자열안에_문자열() {
+        String str1 = "cd";
+        String str2 = "abcd";
+
+        int answer = 0;
+        if (str1.contains(str2)) answer = 1;
+        else answer = 2;
+
+        System.out.println(answer);
+    }
+
+    @Test
+    void 머쓱이보다_키_큰_사람() {
+        int[] array = { 111, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+        int height = 4;
+
+        int answer = 0;
+        for (int i = 0; i < array.length; i++) if (array[i] > height) answer++;
+
+        System.out.println(answer);
+    }
+
+    @Test
+    void 배열의_유사도() {
+        String[] s1 = { "a", "b", "c" };
+        String[] s2 = { "com", "b", "d", "p", "c" };
+
+        int answer = 0;
+        for (String str : s1) {
+            for (String str2 : s2) {
+                if (str.equals(str2)) answer++;
+            }
+        }
+
+        System.out.println(answer);
+    }
+
+    @Test
+    void 최대값_만들기_1() {
+        int[] numbers = { 0, 31, 24, 10, 1, 9 };
+
+        Arrays.sort(numbers);
+
+        System.out.println(numbers[numbers.length - 1] * numbers[numbers.length - 2]);
+    }
+
+    @Test
+    void 순서쌍의_개수() {
+        int n = 100;
+
+        int answer = 0;
+        for (int i = 1; i <= n; i++) {
+            if (n % i == 0) answer++;
+        }
+
+        System.out.println(answer);
+    }
+
+    @Test
+    void 삼각형의_완성조건_1() {
+        int[] sides = { 199, 72, 222 };
+
+        int answer = 0;
+        Arrays.sort(sides);
+
+        if (sides[2] < sides[0] + sides[1]) answer = 1;
+        else answer = 2;
+
+        System.out.println(answer);
+    }
+
+    @Test
+    void 모음_제거() {
+        String my_string = "nice to meet you";
+
+        System.out.println(my_string.replaceAll("[aeiou]", ""));
+    }
+
+    @Test
+    void 제곱수_판별하기() {
+        int n = 966;
+
+        int answer = 1;
+        int count = 0;
+        while (count * count < n) {
+            count++;
+        }
+
+        answer = count * count == n ? 1 : 2;
+        System.out.println(answer);
+    }
+
+    @Test
+    void 숨어있는_숫자의_덧셈_1() {
+        String my_string = "1a2b3c4d123";
+
+        int sum = 0;
+
+        for (int i = 0; i < my_string.length(); i++) {
+            int charset = my_string.charAt(i);
+            if (charset >= 48 && charset <= 57) sum += charset - 48;
+        }
+
+        System.out.println(sum);
+    }
+
+    @Test
+    void 세균_증식() {
+        int n = 7;
+        int t = 15;
+
+        int sum = n;
+        for (int i = 1; i <= t; i++) {
+            sum *= 2;
+        }
+
+        System.out.println(sum);
     }
 }
