@@ -587,4 +587,21 @@ public class CodingTestIntro {
 
         System.out.println(sum);
     }
+
+    @Test
+    void 개미_군단() {
+        int hp = 24;
+        if (hp < 5) System.out.println(hp);
+
+        int count = 0;
+        count = hp / 5; // 장군개미
+        hp -= (count * 5); // 장군개미수 만큼 피가 없어짐.
+
+        count += hp / 3; // 병정개미
+        if (hp % 3 != 0) hp -= count - (count - (hp / 3));
+
+        count += hp;
+
+        System.out.println(count);
+    }
 }
