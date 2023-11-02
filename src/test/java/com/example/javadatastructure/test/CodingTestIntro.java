@@ -590,18 +590,95 @@ public class CodingTestIntro {
 
     @Test
     void 개미_군단() {
-        int hp = 24;
-        if (hp < 5) System.out.println(hp);
+        int hp = 999;
 
-        int count = 0;
-        count = hp / 5; // 장군개미
-        hp -= (count * 5); // 장군개미수 만큼 피가 없어짐.
+        int count = hp / 5; // 장군개미
+        hp %= 5; // 장군개미수 만큼 피가 없어짐.
 
         count += hp / 3; // 병정개미
-        if (hp % 3 != 0) hp -= count - (count - (hp / 3));
+        hp %= 3; // 병정개미수 만큼 피가 없어짐.
 
         count += hp;
 
         System.out.println(count);
+    }
+
+    @Test
+    void 대문자와_소문자() {
+        String my_string = "cccCCC";
+        StringBuffer str = new StringBuffer();
+
+        for (char c : my_string.toCharArray()) {
+            if (c >= 'A' && c <= 'Z') c = (char)(c + 32);
+            else if (c >= 'a' && c <= 'z') c =  (char)(c - 32);
+            str.append(c);
+        }
+
+        System.out.println(str);
+    }
+
+    @Test
+    void 암호_해독() {
+        String cipher = "dfjardstddetckdaccccdegk";
+        int code = 4;
+
+        char[] chars = cipher.toCharArray();
+        StringBuffer str = new StringBuffer();
+
+        for (int i = code; i <= cipher.length(); i = i + code) {
+            str.append(chars[i - 1]);
+        }
+
+        System.out.println(str);
+    }
+
+    @Test
+    void n의_배수_고르기() {
+        int n = 3;
+        int[] numlist = { 4, 5, 6, 7, 8, 9, 10, 11, 12 };
+
+        List<Integer> list = new ArrayList<>();
+        for (int a : numlist) {
+            if (a % n == 0) list.add(a);
+        }
+
+        int[] arr = list.stream().mapToInt(Integer::intValue).toArray();
+        for (int a : arr) {
+            System.out.println(a);
+        }
+    }
+
+    @Test
+    void 가위_바위_보() {
+        String rsp = "205";
+
+        char[] rspChars = rsp.toCharArray();
+        StringBuffer stringBuffer = new StringBuffer();
+        for (char c : rspChars) {
+            switch (c) {
+                case '0' -> stringBuffer.append("5");
+                case '2' -> stringBuffer.append("0");
+                case '5' -> stringBuffer.append("2");
+            }
+        }
+
+        System.out.println(stringBuffer);
+    }
+
+    @Test
+    void 최댓값_만들기_2() {
+        int[] numbers = { 1, 2, -3, 4, -5 };
+
+        int answer = 0;
+
+        Arrays.sort(numbers);
+
+        if (numbers[0] * numbers[1] > numbers[numbers.length - 1] * numbers[numbers.length - 2]) {
+            answer = numbers[0] * numbers[1];
+        } else {
+            answer = numbers[numbers.length - 1] * numbers[numbers.length - 2];
+        }
+
+        System.out.println(answer);
     }
 }
