@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
+import java.util.stream.IntStream;
 
 public class CodingTestIntro {
     @Test
@@ -680,5 +682,192 @@ public class CodingTestIntro {
         }
 
         System.out.println(answer);
+    }
+
+    @Test
+    void 주사위의_개수() {
+        int[] box = { 10, 8, 6 };
+        int n = 3;
+
+        System.out.println((box[0] / n) * (box[1] / n) * (box[2] / n));
+    }
+
+    @Test
+    void 문자열_정렬하기_1() {
+        String my_string = "hi12392";
+
+        List<Integer> list = new ArrayList<>();
+        for (char c : my_string.toCharArray()) {
+            if (c >= '0' && c <= '9') list.add(c - '0');
+        }
+
+        for (int i : list.stream().sorted().mapToInt(Integer::intValue).toArray()) {
+            System.out.println(i);
+        }
+    }
+
+    @Test
+    void 가장_큰_수_찾기() {
+        int[] array = { 11, 10, 12, 8 };
+
+        int[] answer = { 0, 0 };
+        for (int i = 0; i < array.length; i++) {
+            if (answer[0] < array[i]) {
+                answer[0] = array[i];
+                answer[1] = i;
+            }
+        }
+
+        System.out.println(answer[0]);
+        System.out.println(answer[1]);
+    }
+
+    @Test
+    void 인덱스_바꾸기() {
+        String my_string = "hello";
+        int num1 = 1;
+        int num2 = 2;
+
+        char[] chars = my_string.toCharArray();
+        char temp = chars[num1];
+        chars[num1] = chars[num2];
+        chars[num2] = temp;
+
+        System.out.println(String.valueOf(chars));
+    }
+
+    @Test
+    void 외계행성의_나이() {
+        int age = 98;
+
+        char[] parseAge = Integer.toString(age).toCharArray();
+        char[] chars = "abcdefghij".toCharArray();
+        StringBuffer stringBuffer = new StringBuffer();
+
+        for(char p : parseAge) {
+            stringBuffer.append(chars[p - 48]);
+        }
+
+        System.out.println(stringBuffer);
+    }
+
+    @Test
+    void 배열_회전시키기() {
+        int[] numbers = { 4, 455, 6, 4, -1, 45, 6 };
+        String direction = "right";
+
+        int[] result = new int[numbers.length];
+
+        switch (direction) {
+            case "left" -> {
+                result[result.length - 1] = numbers[0];
+                for (int i = 1; i < numbers.length; i++) {
+                    result[i - 1] = numbers[i];
+                }
+            }
+            case "right" -> {
+                result[0] = numbers[result.length - 1];
+                for (int i = 1; i < numbers.length; i++) {
+                    result[i] = numbers[i - 1];
+                }
+            }
+        }
+
+        for (int a : result) {
+            System.out.println(a);
+        }
+    }
+
+    @Test
+    void 약수_구하기() {
+        int n = 29;
+        List<Integer> list = new ArrayList<>();
+
+        for (int i = 1; i <= n; i++) {
+            if (n % i == 0) list.add(i);
+        }
+
+        for (int a : list.stream().mapToInt(Integer::intValue).toArray()) {
+            System.out.println(a);
+        }
+    }
+
+    @Test
+    void _369게임() {
+        int order = 1369123;
+
+        int count = 0;
+        char[] parseOrder = Integer.toString(order).toCharArray();
+        for (char c : parseOrder) {
+            if (c == '3' || c == '6' || c == '9') count++;
+        }
+
+        System.out.println(count);
+    }
+
+    @Test
+    void 숫자_찾기() {
+        int num = 29183;
+        int k = 1;
+
+        int answer = -1;
+        char[] chars = Integer.toString(num).toCharArray();
+        for (int i = 0;  i < chars.length; i++) {
+            if (chars[i] == k + 48) {
+                answer = i + 1;
+                break;
+            }
+        }
+
+        System.out.println(answer);
+    }
+
+    @Test
+    void 합성수_찾기() {
+        int n = 10;
+
+        int answer = 0;
+        for (int i = 1; i <= n; i++) {
+            int count = 0;
+            for (int j = 1; j <= i; j++) {
+                if (i % j == 0) count++;
+            }
+
+            if (count >= 3) answer++;
+        }
+
+        System.out.println(answer);
+    }
+
+    @Test
+    void 중복된_문자_제거() {
+        String my_string = "people";
+
+        String str = " ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+        int[] strCheck = new int[str.length()];
+        StringBuffer stringBuffer = new StringBuffer();
+
+        for (char c : my_string.toCharArray()) {
+            strCheck[str.indexOf(c)]++;
+            if (strCheck[str.indexOf(c)] <= 1) stringBuffer.append(c);
+        }
+
+        System.out.println(stringBuffer);
+    }
+
+    @Test
+    void 문자열_정렬하기_2() {
+        String my_string = "Bcad";
+
+        System.out.println(my_string
+                .toLowerCase()
+                .chars()
+                .sorted()
+                .collect(
+                        StringBuffer::new,
+                        StringBuffer::appendCodePoint, // char를 String으로 변경
+                        StringBuffer::append
+                )
+                .toString());
     }
 }
