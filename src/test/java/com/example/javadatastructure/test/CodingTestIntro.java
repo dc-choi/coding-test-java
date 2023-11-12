@@ -2,10 +2,7 @@ package com.example.javadatastructure.test;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 import java.util.stream.IntStream;
 
 public class CodingTestIntro {
@@ -869,5 +866,101 @@ public class CodingTestIntro {
                         StringBuffer::append
                 )
                 .toString());
+    }
+
+    @Test
+    void _2차원으로_만들기() {
+        int[] num_list = { 100, 95, 2, 4, 5, 6, 18, 33, 948 };
+        int n = 3;
+
+        int[][] answer = new int[num_list.length / n][n];
+
+        for (int i = 0; i < num_list.length; i++) {
+            answer[i / n][i % n] = num_list[i];
+        }
+
+        for (int[] as: answer) {
+            for (int a : as) System.out.println(a);
+            System.out.println();
+        }
+    }
+
+    @Test
+    void A로_B만들기() {
+        String before = "hello";
+        String after = "olleh";
+
+        int answer = 0;
+
+        String str = "abcdefghijklmnopqrstuvwxyz";
+        int[] beforeCheck = new int[str.length()];
+        int[] afterCheck = new int[str.length()];
+
+        for (char c : before.toCharArray()) beforeCheck[str.indexOf(c)]++;
+        for (char c : after.toCharArray()) afterCheck[str.indexOf(c)]++;
+
+        if (Arrays.equals(beforeCheck, afterCheck)) answer = 1;
+
+        System.out.println(answer);
+    }
+
+    @Test
+    void 모스부호_1() {
+        String letter = ".... . .-.. .-.. ---";
+
+        String[] mos = {
+                ".-","-...","-.-.","-..",".",
+                "..-.","--.","....","..",".---",
+                "-.-",".-..","--","-.","---",
+                ".--.","--.-",".-.","...","-",
+                "..-","...-",".--","-..-","-.--","--.."
+        };
+
+        StringBuffer stringBuffer = new StringBuffer();
+        String[] split = letter.split(" ");
+        for (String s : split) {
+            char c = (char)(Arrays.asList(mos).indexOf(s) + 'a');
+            stringBuffer.append(c);
+        }
+
+        System.out.println(stringBuffer);
+    }
+
+    @Test
+    void 팩토리얼() {
+        int n = 120;
+
+        int answer = 0;
+
+        for (int i = 1; i <= 10; i++) {
+            int count = factorial(i);
+            if (count <= n) answer = i;
+        }
+
+        System.out.println(answer);
+    }
+
+    int factorial(int n) {
+        if (n == 1) return 1;
+        return n * factorial(n - 1);
+    }
+
+    @Test
+    void k의_개수() {
+        int i = 1;
+        int j = 13;
+        int k = 1;
+
+        int answer = 0;
+        char kChar = (char) Character.toTitleCase(k);
+
+        for (int n = i; n <= j; n++) {
+            char[] chars = Character.toChars(n);
+            for (char c : chars) {
+                if (c == kChar) answer++;
+            }
+        }
+
+        System.out.println(answer);
     }
 }
