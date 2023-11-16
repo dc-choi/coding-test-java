@@ -951,15 +951,54 @@ public class CodingTestIntro {
         int k = 1;
 
         int answer = 0;
-        char kChar = (char) Character.toTitleCase(k);
+        String kStr = String.valueOf(k);
 
         for (int n = i; n <= j; n++) {
-            char[] chars = Character.toChars(n);
-            for (char c : chars) {
-                if (c == kChar) answer++;
+            String[] split = String.valueOf(n).split("");
+            for (String s : split) {
+                if (s.equals(kStr)) answer++;
             }
         }
 
         System.out.println(answer);
     }
+
+    @Test
+    void 숨어있는_숫자의_덧셈_2() {
+        String my_string = "aAb1B2cC34oOp";
+
+        int answer = 0;
+        String[] split = my_string.split("[A-z]");
+        for (String s : split) {
+            if (!(s.isBlank())) answer += Integer.parseInt(s);
+        }
+
+        System.out.println(answer);
+    }
+
+    @Test
+    void 가까운_수() {
+        int[] array = { 3, 10, 12, 14, 28 };
+        int n = 14;
+
+        Arrays.sort(array);
+
+        int answer = 0;
+        int temp = Integer.MAX_VALUE;
+
+        for (int a : array) {
+            // 절대값을 비교해서 더 작은 수를 answer에 넣는다.
+            if (temp > Math.abs(n - a)) {
+                answer = a;
+                temp = Math.abs(n - a);
+            // 절대값을 비교해서 같으면 더 작은수를 answer에 넣는다.
+            } else if (temp == Math.abs(n - a) && a < answer) {
+                answer = a;
+            }
+        }
+
+        System.out.println(answer);
+    }
+
+
 }
