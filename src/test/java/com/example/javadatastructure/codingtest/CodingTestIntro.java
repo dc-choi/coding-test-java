@@ -1000,5 +1000,38 @@ public class CodingTestIntro {
         System.out.println(answer);
     }
 
+    @Test
+    void 진료순서_정하기() {
+        int[] emergency = { 30, 10, 23, 6, 100 };
 
+        int[] answer = new int[emergency.length];
+
+        for (int i = 0; i < emergency.length; i++) {
+            for (int j = 0; j < emergency.length; j++) {
+                if (emergency[i] < emergency[j]) {
+                    answer[i]++;
+                }
+            }
+            answer[i]++;
+        }
+
+        for (int a : answer) {
+            System.out.println(a);
+        }
+    }
+
+    @Test
+    void 한_번만_등장한_문자() {
+        String s = "hello";
+
+        int[] charCount = new int[26];
+        StringBuilder answer = new StringBuilder();
+
+        for (char c : s.toCharArray()) charCount[c - 'a']++;
+        for (int i = 0; i < 26; i++) {
+            if (charCount[i] == 1) answer.append((char) (i + 'a'));
+        }
+
+        System.out.println(answer);
+    }
 }
