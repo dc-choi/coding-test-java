@@ -1034,4 +1034,21 @@ public class CodingTestIntro {
 
         System.out.println(answer);
     }
+
+    @Test
+    void _7의_개수() {
+        int[] array = { 7, 77, 17 };
+
+        int answer = 0;
+
+        for (int a : array) {
+            char[] charArray = String.valueOf(a).toCharArray();
+
+            for (char c : charArray) {
+                if (c == '7') answer++;
+            }
+        }
+
+        System.out.println(answer);
+    }
 }
