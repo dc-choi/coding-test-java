@@ -1051,4 +1051,24 @@ public class CodingTestIntro {
 
         System.out.println(answer);
     }
+
+    @Test
+    void 컨트롤_제트() {
+        String s = "1 2 Z 3";
+
+        int answer = 0;
+        int prev = 0;
+        String[] split = s.split(" ");
+
+        for (String str : split) {
+            if (str.equals("Z")) answer -= prev;
+            else {
+                int parseInt = Integer.parseInt(str);
+                answer += parseInt;
+                prev = parseInt;
+            }
+        }
+
+        System.out.println(answer);
+    }
 }
