@@ -2,7 +2,9 @@ package com.example.javadatastructure.codingtest;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class CodingTestIntro {
     @Test
