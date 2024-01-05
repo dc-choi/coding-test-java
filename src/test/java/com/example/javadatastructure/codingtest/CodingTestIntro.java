@@ -1107,4 +1107,24 @@ public class CodingTestIntro {
 
         System.out.println(answer);
     }
+
+    @Test
+    void rny_string() {
+        String rny_string = "programmers";
+
+        StringBuilder answer = new StringBuilder();
+
+        // 내가 푼 풀이법
+        for (char c : rny_string.toCharArray()) {
+            if (c == 'm') {
+                answer.append("rn");
+            } else {
+                answer.append(c);
+            }
+        }
+        System.out.println(answer);
+
+        // rny_string 정답
+        System.out.println(rny_string.replaceAll("m", "rn"));
+    }
 }
