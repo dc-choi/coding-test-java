@@ -3,6 +3,7 @@ package com.example.javadatastructure.codingtest;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class CodingTestBasic {
     @Test
@@ -57,5 +58,23 @@ public class CodingTestBasic {
 
         // rny_string 정답
         System.out.println(rny_string.replaceAll("m", "rn"));
+    }
+
+    @Test
+    void 문자열_출력하기() {
+        Scanner sc = new Scanner(System.in);
+        String a = sc.next();
+
+        System.out.println(a);
+    }
+
+    @Test
+    void a와_b_출력하기() {
+        Scanner sc = new Scanner(System.in);
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+
+        System.out.println("a = " + a);
+        System.out.println("b = " + b);
     }
 }
