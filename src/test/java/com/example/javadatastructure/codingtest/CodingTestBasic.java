@@ -77,4 +77,15 @@ public class CodingTestBasic {
         System.out.println("a = " + a);
         System.out.println("b = " + b);
     }
+
+    @Test
+    void 문자열_반복해서_출력하기() {
+        Scanner sc = new Scanner(System.in);
+        String str = sc.next();
+        int n = sc.nextInt();
+
+        for (int a = 0; a < n; a++) {
+            System.out.print(str);
+        }
+    }
 }
