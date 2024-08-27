@@ -1,4 +1,4 @@
-package com.example.javadatastructure.class1;
+package com.example.javadatastructure.classs;
 
 import java.util.ArrayList;
 import java.util.List;

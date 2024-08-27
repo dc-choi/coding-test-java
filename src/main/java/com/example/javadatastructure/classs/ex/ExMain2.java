@@ -1,6 +1,9 @@
-package com.example.javadatastructure.class1.ex;
+package com.example.javadatastructure.classs.ex;
 
-public class ExMain {
+import java.util.ArrayList;
+import java.util.List;
+
+public class ExMain2 {
     public static void main(String[] args) {
         MovieReview movieReview1 = new MovieReview();
         movieReview1.title = "The Dark Knight";
@@ -14,8 +17,13 @@ public class ExMain {
         movieReview3.title = "Interstellar";
         movieReview3.review = "This is a great movie!";
 
-        System.out.println("Title: " + movieReview1.title + ", Review: " + movieReview1.review);
-        System.out.println("Title: " + movieReview2.title + ", Review: " + movieReview2.review);
-        System.out.println("Title: " + movieReview3.title + ", Review: " + movieReview3.review);
+        List<MovieReview> movieReviews = new ArrayList<>();
+        movieReviews.add(movieReview1);
+        movieReviews.add(movieReview2);
+        movieReviews.add(movieReview3);
+
+        for (MovieReview mr : movieReviews) {
+            System.out.println("Title: " + mr.title + ", Review: " + mr.review);
+        }
     }
 }

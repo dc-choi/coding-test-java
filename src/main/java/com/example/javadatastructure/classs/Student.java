@@ -1,4 +1,4 @@
-package com.example.javadatastructure.class1;
+package com.example.javadatastructure.classs;
 
 public class Student {
     String name;

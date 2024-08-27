@@ -1,4 +1,4 @@
-package com.example.javadatastructure.class1.ex;
+package com.example.javadatastructure.classs.ex;
 
 public class ProductOrder {
     String name;
